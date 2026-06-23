@@ -1,0 +1,1 @@
+# talento24_backend_django_challenge
