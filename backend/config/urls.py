@@ -19,8 +19,15 @@ from django.urls import path
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from apps.countries.views import CountryListView
+from apps.users.views import UserCreateView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name="obtain_pair_token"),
     path('api/token/refresh/', TokenRefreshView.as_view(), name="refresh_token"),
+
+    path('api/v1/countries/', CountryListView.as_view(), name="country-list"),
+
+    path('api/v1/users/', UserCreateView.as_view(), name="create-user"),
 ]
