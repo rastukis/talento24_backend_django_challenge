@@ -3,12 +3,23 @@ import hashlib
 
 from django.core.cache import cache
 from django.db import transaction
-from rest_framework.views import APIView
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from apps.users.models import User
 from apps.users.serializers import UserSerializer
 from constants.user import IDEM_KEY_USER
 from constants.globals import IDEM_KEY, IDEM_KEY_REQUIRED, DETAIL_LBL, DUPLICATED_KEY, HttpLabels
+
+
+class CustomPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'size'
+    max_page_size = 100
 
 
 class UserCreateView(APIView):
@@ -72,3 +83,15 @@ class UserCreateView(APIView):
                 str(error),
                 status=500
             )
+
+
+class UserListView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    pagination_class = CustomPagination
+
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+
+    filterset_fields = ["country"]
+
+    search_fields = ["first_name", "last_name", "email"]

@@ -20,7 +20,7 @@ from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from apps.countries.views import CountryListView
-from apps.users.views import UserCreateView
+from apps.users.views import UserCreateView, UserListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +29,7 @@ urlpatterns = [
 
     path('api/v1/countries/', CountryListView.as_view(), name="country-list"),
 
+    path('api/v1/get-users/', UserListView.as_view(), name="list-user"),
     path('api/v1/users/', UserCreateView.as_view(), name="create-user"),
+
 ]
