@@ -130,6 +130,19 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+    "http_idempotency_key",
+    "idempotency-key",
+]
 
 REDIS_URL = os.getenv("REDIS_URL")
 REDIS_HOST = "127.0.0.1"
