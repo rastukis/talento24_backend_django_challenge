@@ -17,9 +17,19 @@ from constants.globals import IDEM_KEY, IDEM_KEY_REQUIRED, DETAIL_LBL, DUPLICATE
 
 
 class CustomPagination(PageNumberPagination):
-    page_size = 5
-    page_size_query_param = 'size'
-    max_page_size = 100
+
+    def get_paginated_response(self, data):
+        next_page = self.page.next_page_number() if self.page.has_next() else None
+        previous_page = self.page.previous_page_number() if self.page.has_previous() else None
+
+        return Response({
+            "count": self.page.paginator.count,
+            "total_pages": self.page.paginator.num_pages,
+            "current_page": self.page.number,
+            "next": next_page,
+            "previous": previous_page,
+            "results": data
+        })
 
 
 class UserCreateView(APIView):
