@@ -1,0 +1,66 @@
+[
+  {
+    "model": "countries.country",
+    "pk": 1,
+    "fields": {
+      "iso": "DE",
+      "name": "Alemania"
+    }
+  },
+  {
+    "model": "countries.country",
+    "pk": 2,
+    "fields": {
+      "iso": "AR",
+      "name": "Argentina"
+    }
+  },
+  {
+    "model": "countries.country",
+    "pk": 3,
+    "fields": {
+      "iso": "AU",
+      "name": "Australia"
+    }
+  },
+  {
+    "model": "countries.country",
+    "pk": 4,
+    "fields": {
+      "iso": "BO",
+      "name": "Bolivia"
+    }
+  },
+  {
+    "model": "countries.country",
+    "pk": 5,
+    "fields": {
+      "iso": "CN",
+      "name": "China"
+    }
+  },
+  {
+    "model": "countries.country",
+    "pk": 6,
+    "fields": {
+      "iso": "US",
+      "name": "Estados Unidos"
+    }
+  },
+  {
+    "model": "countries.country",
+    "pk": 7,
+    "fields": {
+      "iso": "MX",
+      "name": "México"
+    }
+  },
+  {
+    "model": "countries.country",
+    "pk": 8,
+    "fields": {
+      "iso": "GB",
+      "name": "Reino Unido"
+    }
+  }
+]

@@ -17,6 +17,7 @@ help:
 	@echo " make make-migrations     - Busca cambios en los modelos y genera el archivo de instrucciones"
 	@echo " make migrate             - Sincroniza los cambios en los modelos con el esquema de la base de datos (Crear tablas, nuevas columnas, etc)"
 	@echo " make superuser           - Crear una cuenta de administrador con todos los permisos"
+	@echo " make load-data-countries - Cargar datos a la tabla de Paises"
 	@echo "- Redis -"
 	@echo " make redis-cli           - Abre la Shell de Redis"
 
@@ -28,22 +29,25 @@ build:
 	$(COMPOSER) build
 
 up:
-	docker compose up -d
+	$(COMPOSER) up -d
 
 down:
-	docker compose down
+	$(COMPOSER) down
 
 logs:
-	docker compose logs -f
+	$(COMPOSER) logs -f
 
 make-migrations:
-	docker compose exec web python manage.py makemigrations
+	$(COMPOSER) exec web python manage.py makemigrations
 
 migrate:
-	docker compose exec web python manage.py migrate
+	$(COMPOSER) exec web python manage.py migrate
 
 superuser:
-	docker compose exec web python manage.py createsuperuser
+	$(COMPOSER) exec web python manage.py createsuperuser
+
+load-data-countries:
+	$(COMPOSER) exec web python manage.py loaddata apps/countries/countries.json
 
 redis-cli:
-	docker compose exec redis redis-cli
+	$(COMPOSER) exec redis redis-cli
